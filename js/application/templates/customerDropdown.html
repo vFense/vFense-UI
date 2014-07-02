@@ -1,0 +1,15 @@
+<% if (views.length > 1) { %>
+<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+    <i class="icon-group"></i>
+    <span id="activeCustomer"><%= current_view || default_view %></span>
+    <i class="icon-caret-down"></i>
+</a>
+<ul class="dropdown-menu">
+    <%= viewHelpers.renderViews(views, current_view) %>
+</ul>
+<% } else if (views.length === 1) { %>
+    <a href="javascript:;">
+        <i class="icon-group"></i>
+        <span><%= current_view || default_view %></span>
+    </a>
+<% } %>

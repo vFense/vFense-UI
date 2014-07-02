@@ -1,0 +1,287 @@
+<article class="row-fluid">
+<section class="span12 list">
+<header class="clearfix">
+    <!--<div class="pull-left span6">
+        <strong class="span5">Edit customers for user: </strong>
+                <span class="span6">
+                    <select id="userContext" name="users">
+                        <%= viewHelpers.getOptions(users, userContext) %>
+                    </select>
+                </span>
+    </div>-->
+            <span class="pull-right">
+                <button class="btn btn-mini" data-id="toggleCustomer">
+                    <i class="icon-plus" style="color: green"></i>
+                    <strong>Create Customer</strong>
+                </button>
+            </span>
+</header>
+<div class="accordion items">
+    <form id="newCustomerDiv" class="item hide">
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">*Customer Name:</label>
+                    <div class="controls">
+                        <input id="customerName" class="input-block-level" name="customerName" type="text" />
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">Download URL:</label>
+                    <div class="controls">
+                        <input id="downloadURL" class="input-block-level" name="downloadURL" type="text" />
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">Net Throttle:</label>
+                    <div class="controls">
+                        <input id="netThrottle" class="input-block-level" name="netThrottle" type="text" value="0" />
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">*CPU Throttle:</label>
+                    <div class="controls">
+                        <select id="cpuThrottle" class="input-block-level" name="cpuThrottle">
+                            <option value="normal">Normal</option>
+                            <option value="idle">Idle</option>
+                            <option value="high">High</option>
+                            <option value="below_normal">Below Normal</option>
+                            <option value="above_normal">Above Normal</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">Server Queue TTL:</label>
+                    <div class="controls">
+                        <input id="serverQueueTTL" class="input-block-level" name="serverQueueTTL" type="text" value="10" />
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">Agent Queue TTL:</label>
+                    <div class="controls">
+                        <input id="agentQueueTTL" class="input-block-level" name="agentQueueTTL" type="text" value="10" />
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div>
+                    <div colspan="2">
+                        <span class="help-online hide"></span>
+                    </div>
+                </div>
+                <div>
+                    <div colspan="2" class="control-group alignRight">
+                        <button id="cancelNewCustomer" class="btn btn-mini">Cancel</button>
+                        <button id="submitCustomer" class="btn btn-mini btn-primary">Confirm</button>
+                    </div>
+                </div>
+    </form>
+    <% if (data.length) { %>
+    <% _.each(data, function (customer) { %>
+    <div class="accordion-group item clearfix">
+        <div class="accordion-heading row-fluid">
+            <div class="span9">
+                <div class="pull-left">
+                    <%= viewHelpers.renderCustomerLink(customer) %>
+                </div>
+            </div>
+            <div class="span3 alignRight">
+                <%= viewHelpers.renderDeleteButton(customer) %>
+                <button name="deleteCustomer" class="btn btn-mini btn-danger hide" value="<%= customer.customer_name %>">Delete</button>
+                <button name="toggleDelete" class="btn btn-mini hide">Cancel</button>
+            </div>
+        </div>
+        <div class="accordion-body collapse">
+            <div class="accordion-inner">
+                <label><small>Groups for customer <%= customer.customer_name %>:</small></label>
+                <input type="hidden" name="groupSelect" data-id="<%= customer.groups[0]%>" data-customer="<%= customer.customer_name%>" data-placeholder="Select a group" data-url="/api/v1/groups" value='<% print(JSON.stringify(customer.groups)); %>'>
+                <label><small>Users accessible by customer <%= customer.customer_name%>:</small></label>
+                <input type="hidden" name="userSelect" data-customer="<%= customer.customer_name%>" data-placeholder="Select a user" data-url="/api/v1/users" value='<% print (JSON.stringify(customer.users)); %>'>
+                <div class="customer-info">
+                    <div class="customer-heading">
+                        <p>Customer Info:</p>
+                    </div>
+                    <div class="list">
+                        <div class="items">
+                            <div class="item row-fluid">
+                                <span class="span3">
+                                    <strong>Network Throttle:</strong>
+                                </span>
+                                <div class="span9" data-type="content">
+                                    <span><%= customer.net_throttle%></span>
+                                    <button class="btn btn-link noPadding pull-right" data-id="options">
+                                        <i class="icon-pencil" style="color: #daa520"></i>
+                                    </button>
+                                </div>
+                                <div class="span9 hide" data-type="editor">
+                                    <form name="editCustomer" data-reset="true" data-id="netThrottle">
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <input type="text" name="net_throttle" value="<%= customer.net_throttle %>" data-id="input"/>
+                                                <span data-name="message" class="help-online"></span>
+                                            </div>
+                                        </div>
+                                        <%= viewHelpers.controlButtons() %>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="item row-fluid">
+                                <span class="span3">
+                                    <strong>CPU Throttle:</strong>
+                                </span>
+                                <div class="span9" data-type="content">
+                                    <%  var cpuThrottle = customer.cpu_throttle;
+                                        cpuThrottle = cpuThrottle.replace('_', ' ');
+                                    %>
+                                    <span><%= cpuThrottle || 'N/A' %></span>
+                                    <button class="btn btn-link noPadding pull-right" data-id="options">
+                                        <i class="icon-pencil" style="color: #daa520"></i>
+                                    </button>
+                                </div>
+                                <div class="span9 hide" data-type="editor">
+                                    <form name="editCustomer" data-reset="true" data-id="cpuThrottle">
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <select id="editCPUThrottle" class="input-block-level" name="cpu_throttle" data-id="input" required>
+                                                    <% if(customer.cpu_throttle === 'normal') { %>
+                                                    <option value="normal" selected>Normal</option>
+                                                    <option value="idle">Idle</option>
+                                                    <option value="high">High</option>
+                                                    <option value="below_normal">Below Normal</option>
+                                                    <option value="above_normal">Above Normal</option>
+                                                    <% } else if(customer.cpu_throttle === 'idle') { %>
+                                                    <option value="normal">Normal</option>
+                                                    <option value="idle" selected>Idle</option>
+                                                    <option value="high">High</option>
+                                                    <option value="below_normal">Below Normal</option>
+                                                    <option value="above_normal">Above Normal</option>
+                                                    <% } else if(customer.cpu_throttle === 'high') { %>
+                                                    <option value="normal">Normal</option>
+                                                    <option value="idle">Idle</option>
+                                                    <option value="high" selected>High</option>
+                                                    <option value="below_normal">Below Normal</option>
+                                                    <option value="above_normal">Above Normal</option>
+                                                    <% } else if(customer.cpu_throttle === 'below_normal') { %>
+                                                    <option value="normal">Normal</option>
+                                                    <option value="idle">Idle</option>
+                                                    <option value="high">High</option>
+                                                    <option value="below_normal" selected>Below Normal</option>
+                                                    <option value="above_normal">Above Normal</option>
+                                                    <% } else if(customer.cpu_throttle === 'above_normal') { %>
+                                                    <option value="normal">Normal</option>
+                                                    <option value="idle">Idle</option>
+                                                    <option value="high">High</option>
+                                                    <option value="below_normal">Below Normal</option>
+                                                    <option value="above_normal" selected>Above Normal</option>
+                                                    <% } %>
+                                                </select>
+                                                <span data-name="message" class="help-online"></span>
+                                            </div>
+                                        </div>
+                                        <%= viewHelpers.controlButtons() %>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="item row-fluid">
+                                <span class="span3">
+                                    <strong>Download URL:</strong>
+                                </span>
+                                <div class="span9" data-type="content">
+                                    <span><%= customer.package_download_url_base || N/A%></span>
+                                    <button class="btn btn-link noPadding pull-right" data-id="options">
+                                        <i class="icon-pencil" style="color: #daa520"></i>
+                                    </button>
+                                </div>
+                                <div class="span9 hide" data-type="editor">
+                                    <form name="editCustomer" data-reset="true" data-id="options">
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <input type="text" name="download_url" value="<%= customer.package_download_url_base %>" data-id="input"/>
+                                                <span data-name="message" class="help-online"></span>
+                                            </div>
+                                        </div>
+                                        <%= viewHelpers.controlButtons() %>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="item row-fluid">
+                                <span class="span3">
+                                    <strong>Server Queue TTL:</strong>
+                                </span>
+                                <div class="span9" data-type="content">
+                                    <span><%= customer.server_queue_ttl || 'N/A' %></span>
+                                    <button class="btn btn-link noPadding pull-right" data-id="options">
+                                        <i class="icon-pencil" style="color: #daa520"></i>
+                                    </button>
+                                </div>
+                                <div class="span9 hide" data-type="editor">
+                                    <form name="editCustomer" data-reset="true" data-id="options">
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <input type="text" name="server_queue_ttl" value="<%= customer.server_queue_ttl %>" data-id="input"/>
+                                                <span data-name="message" class="help-online"></span>
+                                            </div>
+                                        </div>
+                                        <%= viewHelpers.controlButtons() %>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="item row-fluid">
+                                <span class="span3">
+                                    <strong>Agent Queue TTL:</strong>
+                                </span>
+                                <div class="span9" data-type="content">
+                                    <span><%= customer.agent_queue_ttl || 'N/A' %></span>
+                                    <button class="btn btn-link noPadding pull-right" data-id="options">
+                                        <i class="icon-pencil" style="color: #daa520"></i>
+                                    </button>
+                                </div>
+                                <div class="span9 hide" data-type="editor">
+                                    <form name="editCustomer" data-reset="true" data-id="options">
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <input type="text" name="agent_queue_ttl" value="<%= customer.agent_queue_ttl %>" data-id="input"/>
+                                                <span data-name="message" class="help-online"></span>
+                                            </div>
+                                        </div>
+                                        <%= viewHelpers.controlButtons() %>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+    <% } else { %>
+    <div class="item row-fluid">
+        <div class="span9"><em>No customers available.</em></div>
+    </div>
+    <% } %>
+    <div class="alert alert-block fade in hide">
+        <span class="help-inline"></span>
+    </div>
+</div>
+</section>
+</article>

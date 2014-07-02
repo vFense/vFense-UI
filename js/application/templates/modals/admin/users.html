@@ -1,0 +1,122 @@
+<article class="row-fluid">
+    <section class="span12 list">
+        <header class="clearfix">
+            <div class="pull-left span6">
+                <strong class="span5">Edit users for customer: </strong>
+                <span class="span6">
+                    <select id="customerContext" name="customers">
+                        <%= viewHelpers.getOptions(customers, currentCustomer) %>
+                    </select>
+                </span>
+            </div>
+            <div class="pull-right hidden-print">
+                <button id="addUser" class="btn btn-mini">Add new user...</button>
+            </div>
+        </header>
+        <div class="accordion items">
+            <form id="newUserDiv" class="item hide">
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="control-group">
+                            <label class="control-label">Full Name:</label>
+                            <div class="controls">
+                                <input id="fullname" class="input-block-level" name="fullname" type="text" />
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="control-group">
+                            <label class="control-label">E-mail:</label>
+                            <div class="controls">
+                                <input id="email" class="input-block-level" name="email" type="text" />
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="control-group">
+                            <label class="control-label">*Username:</label>
+                            <div class="controls">
+                                <input id="username" class="input-block-level" name="username" type="text" />
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="control-group">
+                            <label class="control-label">*Password:</label>
+                            <div class="controls">
+                                <input id="password" class="input-block-level" name="password" type="password" />
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="control-group">
+                            <label class="control-label">*Groups:</label>
+                            <input type="hidden" name="groups" class="input-block-level" placeholder="Add to group" data-customer="" data-url="/api/v1/groups">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="control-group">
+                            <label class="control-label">Customers:</label>
+                            <select name="customers" multiple="multiple" class="input-block-level" placeholder="Add to Customer" class="span6 noMargin">
+                                <%= viewHelpers.getOptions(customers) %>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div colspan="2">
+                        <span class="help-online hide"></span>
+                    </div>
+                </div>
+                <div>
+                    <div colspan="2" class="control-group alignRight">
+                        <button id="cancelNewUser" class="btn btn-mini">Cancel</button>
+                        <button id="submitUser" class="btn btn-mini btn-primary">Confirm</button>
+                    </div>
+                </div>
+            </form>
+            <% if (data.length) { %>
+            <% _.each(data, function (user) { %>
+            <div class="accordion-group item clearfix">
+                <div class="accordion-heading row-fluid">
+                    <div class="span9">
+                        <div class="pull-left">
+                            <%= viewHelpers.renderUserLink(user) %>
+                        </div>
+                    </div>
+                    <div class="span3 alignRight">
+                        <%= viewHelpers.renderDeleteButton(user) %>
+                        <button name="deleteUser" class="btn btn-mini btn-danger hide" value="<%= user.user_name %>">Delete</button>
+                        <button name="toggleDelete" class="btn btn-mini hide">Cancel</button>
+                    </div>
+                </div>
+                <div class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <label><small>Groups for user <%= user.user_name %>:</small></label>
+                        <input type="hidden" name="groupSelect" data-id="<%= user.groups[0].group_id%>" data-user="<%= user.user_name%>" data-customer="<%= currentCustomer %>" data-placeholder="Select a group" data-url="/api/v1/groups" value='<% print(JSON.stringify(user.groups)); %>'>
+                        <label><small>Customers accessible by user <%= user.user_name%>:</small></label>
+                        <input type="hidden" name="customerSelect" data-user="<%= user.user_name%>" data-customer="<%= currentCustomer %>" data-placeholder="Select a customer" data-url="/api/v1/customer/<%= currentCustomer%>" value='<% print (JSON.stringify(user.customers)); %>'>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+            <% } else { %>
+            <div class="item row-fluid">
+                <div class="span9"><em>No users available.</em></div>
+            </div>
+            <% } %>
+            <div class="alert alert-block fade in hide">
+                <span class="help-inline"></span>
+            </div>
+        </div>
+    </section>
+</article>
