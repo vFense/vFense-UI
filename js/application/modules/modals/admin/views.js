@@ -1,9 +1,10 @@
 define(
-    ['jquery', 'underscore', 'backbone', 'app', 'crel', 'modals/admin/deleteCustomer', 'text!templates/modals/admin/customers.html'],
+    ['jquery', 'underscore', 'backbone', 'app', 'crel', 'modals/admin/deleteCustomer', 'text!templates/modals/admin/views.html'],
     function ($, _, Backbone, app, crel, DeleteCustomerModal, CustomersTemplate) {
-        'use strict';var exports = {
+        'use strict';
+        var exports = {
             Collection: Backbone.Collection.extend({
-                baseUrl: 'api/v1/customers',
+                baseUrl: 'api/v1/views',
                 params: {},
                 url: function () {
                     return this.baseUrl + '?' + $.param(this.params);
@@ -18,6 +19,9 @@ define(
             GroupCollection: Backbone.Collection.extend({
                 baseUrl: 'api/v1/groups',
                 filter: '',
+                parse: function (response) {
+                    return response.data;
+                },
                 url: function () {
                     return this.baseUrl + this.filter;
                 }
@@ -330,8 +334,8 @@ define(
                 onRender: function () {
 //                    var $users = this.$('select[name=users]'),
 //                        $customers = this.$('select[name=customers]'),
-                      var $select = this.$el.find('input[name=groupSelect], input[name=userSelect]'),
-                          groups = this.groupCollection.toJSON()[0].data,
+                    var $select = this.$el.find('input[name=groupSelect], input[name=userSelect]'),
+                        groups = this.groupCollection.toJSON(),
                         that = this;
 //                    $users.select2({width: '100%'});
 //                    $customers.select2({width: '100%'});
@@ -344,18 +348,18 @@ define(
                                     results = [];
 
                                 _.each(data, function (object) {
-                                    if(object.id)
+                                    if(object.group_id)
                                     {
                                         _.each(groups, function (group) {
-                                            if(object.id === group.id)
+                                            if(object.group_id === group.group_id)
                                             {
                                                 if(_.indexOf(group.permissions, 'administrator') !== -1)
                                                 {
-                                                    results.push({locked: true, id: object.id, text: object.group_name});
+                                                    results.push({locked: true, id: object.group_id, text: object.group_name});
                                                 }
                                                 else
                                                 {
-                                                    results.push({id: object.id, text: object.group_name});
+                                                    results.push({id: object.group_id, text: object.group_name});
                                                 }
                                             }
                                         });
@@ -398,8 +402,7 @@ define(
                         users = this.userCollection.toJSON()[0],
                         customers = app.user.toJSON(),
                         payload;
-
-                    if (data && data.rv_status_code === 1001 && users && users.rv_status_code === 1001) {
+                    if (data && data.vfense_status_code === 1001 && users && users.vfense_status_code === 1001) {
                         payload = {
                             data: data.data,
                             users: users.data,
@@ -452,7 +455,7 @@ define(
                                     fragment.appendChild(
                                         crel('button', {name: 'toggleAcl', class: 'btn btn-link noPadding'},
                                             crel('i', {class: 'icon-circle-arrow-down'}, ' '),
-                                            crel('span', customer.customer_name)
+                                            crel('span', customer.view_name)
                                         )
                                     );
                                     /* if (customer.customer_name !== 'default') {

@@ -59,7 +59,7 @@ define(
                 'admin/listblocks'  : 'modal/admin/listblocks',
                 'admin/groups'      : 'modal/admin/groups',
                 'admin/users'       : 'modal/admin/users',
-                'admin/customers'   : 'modal/admin/customers',
+                'admin/views'       : 'modal/admin/views',
                 'admin/schedule'    : 'modal/admin/schedule',
                 'admin/services'    : 'modal/admin/services',
                 'admin/uploader'    : 'modal/admin/uploader'
@@ -273,8 +273,8 @@ define(
             'modal/admin/users': function () {
                 this.openAdminModalWithView('modals/admin/users');
             },
-            'modal/admin/customers': function () {
-                this.openAdminModalWithView('modals/admin/customers');
+            'modal/admin/views': function () {
+                this.openAdminModalWithView('modals/admin/views');
             },
             'modal/admin/schedule': function () {
                 this.openAdminModalWithView('modals/admin/schedule');

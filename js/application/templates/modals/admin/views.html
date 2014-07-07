@@ -106,16 +106,16 @@
             </div>
             <div class="span3 alignRight">
                 <%= viewHelpers.renderDeleteButton(customer) %>
-                <button name="deleteCustomer" class="btn btn-mini btn-danger hide" value="<%= customer.customer_name %>">Delete</button>
+                <button name="deleteCustomer" class="btn btn-mini btn-danger hide" value="<%= customer.view_name %>">Delete</button>
                 <button name="toggleDelete" class="btn btn-mini hide">Cancel</button>
             </div>
         </div>
         <div class="accordion-body collapse">
             <div class="accordion-inner">
-                <label><small>Groups for customer <%= customer.customer_name %>:</small></label>
-                <input type="hidden" name="groupSelect" data-id="<%= customer.groups[0]%>" data-customer="<%= customer.customer_name%>" data-placeholder="Select a group" data-url="/api/v1/groups" value='<% print(JSON.stringify(customer.groups)); %>'>
-                <label><small>Users accessible by customer <%= customer.customer_name%>:</small></label>
-                <input type="hidden" name="userSelect" data-customer="<%= customer.customer_name%>" data-placeholder="Select a user" data-url="/api/v1/users" value='<% print (JSON.stringify(customer.users)); %>'>
+                <label><small>Groups for view <%= customer.view_name %>:</small></label>
+                <input type="hidden" name="groupSelect" data-id="<%  %>" data-customer="<%= customer.view_name %>" data-placeholder="Select a group" data-url="/api/v1/groups" value='<%= JSON.stringify(customer.groups) %>'>
+                <label><small>Users accessible by view <%= customer.view_name %>:</small></label>
+                <input type="hidden" name="userSelect" data-customer="<%= customer.view_name %>" data-placeholder="Select a user" data-url="/api/v1/users" value='<% print (JSON.stringify(customer.users)); %>'>
                 <div class="customer-info">
                     <div class="customer-heading">
                         <p>Customer Info:</p>
@@ -127,7 +127,7 @@
                                     <strong>Network Throttle:</strong>
                                 </span>
                                 <div class="span9" data-type="content">
-                                    <span><%= customer.net_throttle%></span>
+                                    <span><%= customer.net_throttle %></span>
                                     <button class="btn btn-link noPadding pull-right" data-id="options">
                                         <i class="icon-pencil" style="color: #daa520"></i>
                                     </button>

@@ -12,7 +12,7 @@ define(
                 tabs: [
                     {text: 'Users', href: 'admin/users'},
                     {text: 'Groups', href: 'admin/groups'},
-                    {text: 'Customers', href: 'admin/customers'},
+                    {text: 'Views', href: 'admin/views'},
                     //{text: '3rd Party Apps', href: 'admin/uploader'},
                     {text: 'Services', href: 'admin/services'},
                     {text: 'Notifications', href: 'admin/notifications'}
