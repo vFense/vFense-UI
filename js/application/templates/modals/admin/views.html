@@ -12,18 +12,18 @@
             <span class="pull-right">
                 <button class="btn btn-mini" data-id="toggleCustomer">
                     <i class="icon-plus" style="color: green"></i>
-                    <strong>Create Customer</strong>
+                    <strong>Create View</strong>
                 </button>
             </span>
 </header>
 <div class="accordion items">
-    <form id="newCustomerDiv" class="item hide">
+    <form id="newViewForm" class="item hide">
         <div class="row-fluid">
             <div class="span6">
                 <div class="control-group">
-                    <label class="control-label">*Customer Name:</label>
+                    <label class="control-label">View Name:</label>
                     <div class="controls">
-                        <input id="customerName" class="input-block-level" name="customerName" type="text" />
+                        <input id="view_name" class="input-block-level" name="view_name" type="text" required />
                         <span class="help-block"></span>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="control-group">
                     <label class="control-label">Download URL:</label>
                     <div class="controls">
-                        <input id="downloadURL" class="input-block-level" name="downloadURL" type="text" />
+                        <input id="download_url" class="input-block-level" name="download_url" type="text" />
                         <span class="help-block"></span>
                     </div>
                 </div>
@@ -43,16 +43,16 @@
                 <div class="control-group">
                     <label class="control-label">Net Throttle:</label>
                     <div class="controls">
-                        <input id="netThrottle" class="input-block-level" name="netThrottle" type="text" value="0" />
+                        <input id="net_throttle" class="input-block-level" name="net_throttle" type="text" value="0" />
                         <span class="help-block"></span>
                     </div>
                 </div>
             </div>
             <div class="span6">
                 <div class="control-group">
-                    <label class="control-label">*CPU Throttle:</label>
+                    <label class="control-label">CPU Throttle:</label>
                     <div class="controls">
-                        <select id="cpuThrottle" class="input-block-level" name="cpuThrottle">
+                        <select id="cpu_throttle" class="input-block-level" name="cpu_throttle">
                             <option value="normal">Normal</option>
                             <option value="idle">Idle</option>
                             <option value="high">High</option>
@@ -68,7 +68,7 @@
                 <div class="control-group">
                     <label class="control-label">Server Queue TTL:</label>
                     <div class="controls">
-                        <input id="serverQueueTTL" class="input-block-level" name="serverQueueTTL" type="text" value="10" />
+                        <input id="server_queue_ttl" class="input-block-level" name="server_queue_ttl" type="text" value="10" />
                         <span class="help-block"></span>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                 <div class="control-group">
                     <label class="control-label">Agent Queue TTL:</label>
                     <div class="controls">
-                        <input id="agentQueueTTL" class="input-block-level" name="agentQueueTTL" type="text" value="10" />
+                        <input id="agent_queue_ttl" class="input-block-level" name="agent_queue_ttl" type="text" value="10" />
                         <span class="help-block"></span>
                     </div>
                 </div>

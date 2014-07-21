@@ -1748,9 +1748,9 @@ input#deleteAllAgents {
     margin-right: 8px;
 }
 
-#newUserDiv SELECT, #newCustomerDiv SELECT,
-#newUserDiv INPUT[type="text"], #newCustomerDiv INPUT[type="text"],
-#newUserDiv INPUT[type="password"], #newCustomerDiv INPUT[type="password"] {
+#newUserDiv SELECT, #newViewForm SELECT,
+#newUserDiv INPUT[type="text"], #newViewForm INPUT[type="text"],
+#newUserDiv INPUT[type="password"], #newViewForm INPUT[type="password"] {
     font-size: 14px;
     width: 100%;
     margin-bottom: 0;

@@ -1,6 +1,6 @@
 define(
-    ['jquery', 'underscore', 'backbone', 'app', 'crel', 'modals/admin/deleteCustomer', 'text!templates/modals/admin/views.html'],
-    function ($, _, Backbone, app, crel, DeleteCustomerModal, CustomersTemplate) {
+    ['jquery', 'underscore', 'backbone', 'app', 'crel', 'utilities/utils', 'modals/admin/deleteCustomer', 'text!templates/modals/admin/views.html'],
+    function ($, _, Backbone, app, crel, Utils, DeleteCustomerModal, CustomersTemplate) {
         'use strict';
         var exports = {
             Collection: Backbone.Collection.extend({
@@ -52,7 +52,7 @@ define(
                     'change input[name=groupSelect]'        :   'toggle',
                     'change input[name=userSelect]'         :   'toggle',
                     'click button[name=cancelEditCustomer]' :   'toggleAclAccordion',
-                    'click #submitCustomer'                 :   'verifyForm',
+                    'submit #newViewForm'		    :   'submitNewView',//'verifyForm',
                     'click button[name=submitEditCustomer]' :   'verifyForm',
 //                    'change #userContext'                   :   'changeUserContext',
                     'click button[data-id=options]'         :   'openOptions',
@@ -174,11 +174,32 @@ define(
                 },
                 createCustomer: function (event) {
                     event.preventDefault();
-                    var $newCustomerDiv = this.$('#newCustomerDiv');
-                    $newCustomerDiv.toggle();
+                    var $newViewForm = this.$('#newViewForm');
+                    $newViewForm.toggle();
                     return this;
                 },
-                verifyForm: function (event) {
+                submitNewView: function (event) {
+			event.preventDefault();
+                        var $form = $(event.currentTarget),
+                            data = Utils.serializeForm($form),
+                            $alert = $form.find('.help-online');
+                        $.ajax({
+                            type: 'POST',
+                            url: 'api/v1/views',
+                            data: JSON.stringify(data),
+                            dataType: 'json',
+                            contentType: 'application/json',
+                            success: function(response) {
+                                if (response.rv_status_code) {
+                                    that.collection.fetch();
+                                } else {
+                                    $alert.removeClass('alert-success').addClass('alert-error').html(response.message).show();
+                                }
+                            }
+                        });
+			return false;
+		},
+		verifyForm: function (event) {
                     var form = document.getElementById('newCustomerDiv');
                     if (form.checkValidity()) {
                         this.submitCustomer(event);
