@@ -91,7 +91,7 @@ define(
                         $(items).append(crel('div', {class: 'item'},
                             crel('a', {href: '#patches/os/' + app.app_id},
                                 crel('span', {class: 'span8'}, app.name),
-                                crel('span', {class: 'span4 alignRight'}, app.rv_severity)
+                                crel('span', {class: 'span4 alignRight'}, app.vfense_severity)
                             )
                         ));
                     });

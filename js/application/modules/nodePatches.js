@@ -78,9 +78,9 @@ define(
                         counter = 0;
                     $items.empty();
                     for (i = 0; i < patchNeed.length; i += 1) {
-                        if (option === patchNeed[i].rv_severity) {
+                        if (option === patchNeed[i].vfense_severity) {
                             patchName = patchNeed[i].name;
-                            severity = patchNeed[i].rv_severity;
+                            severity = patchNeed[i].vfense_severity;
                             patchId = patchNeed[i].rv_id;
                             $itemDiv = newElement('div').addClass('item clearfix').attr('title', patchName);
                             $div = newElement('div').addClass('row-fluid');
@@ -96,7 +96,7 @@ define(
                             counter += 1;
                         } else if (option === 'None') {
                             patchName = patchNeed[i].name;
-                            severity = patchNeed[i].rv_severity;
+                            severity = patchNeed[i].vfense_severity;
                             patchId = patchNeed[i].rv_id;
                             $itemDiv = newElement('div').addClass('item clearfix').attr('title', patchName);
                             $div = newElement('div').addClass('row-fluid');

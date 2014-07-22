@@ -594,7 +594,7 @@ define(
                         id = model.get(exports.keys[page].id),
                         vulnerabilityID = model.get('vulnerability_id'),
                         version = model.get('version'),
-                        severity = model.get('rv_severity'),
+                        severity = model.get('vfense_severity'),
                         dependencies = helpers.getDependencies(model),
                         downloadStatus,
                         input = '',

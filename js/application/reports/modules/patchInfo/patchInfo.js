@@ -9,7 +9,7 @@ define(
                     keys: [
                         {name: 'name', title: 'Name:'},
                         {name: 'version', title: 'Version:'},
-                        {name: 'rv_severity', title: 'Severity', edit: true},
+                        {name: 'vfense_severity', title: 'Severity', edit: true},
                         {name: 'cli_options', title: 'Silent Install Options', edit: true},
                         {name: 'release_date', title: 'Release Date'},
                         {name: 'kb', title: 'KB:'},
@@ -212,11 +212,11 @@ define(
                 },
                 renderModalLayout: function (data, type) {
                     var input;
-                    if (type === 'rv_severity') {
+                    if (type === 'vfense_severity') {
                         input = crel('select', {'required': 'required', 'data-argument': 'severity'},
-                            crel('option', this.printAttributes('Optional', data.rv_severity), 'Optional'),
-                            crel('option', this.printAttributes('Recommended', data.rv_severity), 'Recommended'),
-                            crel('option', this.printAttributes('Critical', data.rv_severity), 'Critical')
+                            crel('option', this.printAttributes('Optional', data.vfense_severity), 'Optional'),
+                            crel('option', this.printAttributes('Recommended', data.vfense_severity), 'Recommended'),
+                            crel('option', this.printAttributes('Critical', data.vfense_severity), 'Critical')
                         );
                     } else if (type === 'cli_options') {
                         input = crel('input', {required: 'required', type: 'text', value: data.cli_options, 'data-argument': 'install_options'});

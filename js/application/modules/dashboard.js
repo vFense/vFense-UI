@@ -149,7 +149,7 @@ define(
                                 moduleName: 'list',
                                 moduleJSON: {
                                     source: 'api/v1/dashboard/widgets/top_needed',
-                                    keys: ['name', 'rv_severity', 'release_date', 'count'],
+                                    keys: ['name', 'vfense_severity', 'release_date', 'count'],
                                     columnTitles: ['Name', 'Severity', 'Release Date', 'Nodes'],
                                     className: ['span5', 'span2', 'span3', 'span2 alignRight'],
                                     showFooter: false,
@@ -163,7 +163,7 @@ define(
                                 moduleName: 'list',
                                 moduleJSON: {
                                     source: 'api/v1/dashboard/widgets/recently_released',
-                                    keys: ['name', 'rv_severity', 'release_date', 'count'],
+                                    keys: ['name', 'vfense_severity', 'release_date', 'count'],
                                     columnTitles: ['Name', 'Severity', 'Release Date', 'Nodes'],
                                     className: ['span5', 'span2', 'span3', 'span2 alignRight'],
                                     showFooter: false,

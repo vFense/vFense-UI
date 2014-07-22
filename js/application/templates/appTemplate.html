@@ -8,7 +8,7 @@
                     </span>
                     <span class="span2"><%= viewHelpers.formatDate(model.get('release_date')) %></span>
                     <span class="span1"><%= model.get('version') %></span>
-                    <span class="span2"><%= model.get('rv_severity') %></span>
+                    <span class="span2"><%= model.get('vfense_severity') %></span>
                     <span class="span2"><%= model.get('vulnerability_id') ? model.get('vulnerability_id') : '-'  %></span>
                     <span class="span2 alignRight">
                         <button class="btn btn-link noPadding" style="vertical-align: top;" data-toggle="remove">
@@ -27,7 +27,7 @@
                     </span>
                     <span class="span2"><%= viewHelpers.formatDate(model.get('release_date')) %></span>
                     <span class="span1"><%= model.get('version') %></span>
-                    <span class="span2"><%= model.get('rv_severity') %></span>
+                    <span class="span2"><%= model.get('vfense_severity') %></span>
                     <span class="span2"><%= model.get('vulnerability_id') ? model.get('vulnerability_id') : '-'  %></span>
                 <% } %>
 
