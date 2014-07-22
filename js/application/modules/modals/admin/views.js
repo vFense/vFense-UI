@@ -182,19 +182,20 @@ define(
 			event.preventDefault();
                         var $form = $(event.currentTarget),
                             data = Utils.serializeForm($form),
-                            $alert = $form.find('.help-online');
+                            $alert = $form.find('.help-online'),
+                            that = this;
                         $.ajax({
                             type: 'POST',
                             url: 'api/v1/views',
                             data: JSON.stringify(data),
                             dataType: 'json',
                             contentType: 'application/json',
-                            success: function(response) {
-                                if (response.rv_status_code) {
-                                    that.collection.fetch();
-                                } else {
-                                    $alert.removeClass('alert-success').addClass('alert-error').html(response.message).show();
-                                }
+                            success: function (response) {
+                                that.collection.fetch();
+                                $alert.removeClass('alert-error').addClass('alert-success').html(response.message).show();
+                            },
+                            error: function (response) {
+                                $alert.removeClass('alert-success').addClass('alert-error').html(response.responseText).show();
                             }
                         });
 			return false;

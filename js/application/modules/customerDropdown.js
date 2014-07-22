@@ -39,7 +39,7 @@ define(
                                     if (view.view_name !== currentView) {
                                         fragment.appendChild(
                                             crel('li',
-                                                crel('a', {href: '#customer/' + customer.view_name}, customer.view_name)
+                                                crel('a', {href: '#customer/' + view.view_name}, view.view_name)
                                             )
                                         );
                                     }
