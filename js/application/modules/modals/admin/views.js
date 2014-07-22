@@ -165,7 +165,7 @@ define(
                     this.deleteCustomerModal = new DeletePanel({
                         name: $(event.currentTarget).val(),
                         type: 'customer',
-                        url: 'api/v1/customer',
+                        url: 'api/v1/views',
                         redirect: '#admin/customers',
                         data: this.collection.toJSON()[0].data,
                         customers: app.user.toJSON().customers

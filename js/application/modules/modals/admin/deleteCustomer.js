@@ -38,13 +38,12 @@ define(
                 },
                 renderDeleteContent: function () {
                     return crel('div', {class: 'customerRemovalDiv'},
-//                               crel('label', {for: 'userSelect2'}, 'Delete these users in order to delete customer ', crel('strong', this.name)),
-//                               crel('input', {type: 'hidden', name: 'userSelect2', id: 'userSelect2', 'data-customer': this.name, 'data-url': 'api/v1/users', value: this.getUsers()}),
-                               crel('label', {for: 'deleteAllAgents'}, 'Type ', crel('strong', 'yes'), ' to Delete All the Agents'),
-                               crel('input', {type: 'text', id: 'deleteAllAgents', required: 'required', style: 'width: 97%'}),
-                               crel('label', {for: 'moveAgents'}, 'Select a Customer to Move All the Agents to it'),
-                               crel('select', {id: 'moveAgents', class: 'no-border-radius', style: 'width: 100%'}, this.getCustomers())
-                           );
+                        crel('label', {for: 'deleteAllAgents'}, 'type ',
+                            crel('strong', 'yes'), ' to delete all agents'
+                        ),
+                        crel('input', {type: 'text', id: 'deleteAllAgents', required: 'required', style: 'width: 97%'}),
+                        crel('span', {class: 'help-online'})
+                    );
                 },
                 /*toggle: function (event) {
                     var $input = $(event.currentTarget),
@@ -144,32 +143,27 @@ define(
                 },
                 confirm: function () {
                     var $button = this.$('button.btn-danger'),
-                        $message = this.$('div.help-online'),
+                        $message = this.$('span.help-online'),
                         that = this,
                         params = {
-                            delete_all_agents: that.$el.find('#deleteAllAgents').val(),
-                            move_agents_to_customer: that.$el.find('#moveAgents').val()
+                            view_names: [that.name]
                         };
                     if (!$button.hasClass('disabled')) {
                         $.ajax({
-                            url: that.url + '/' + that.name,
+                            url: that.url,
                             data: JSON.stringify(params),
                             type: 'DELETE',
                             contentType: 'application/json',
                             success: function (response) {
-                                if (response.rv_status_code === 14002) {
-                                    that.cancel();
-                                    if (that.redirect === document.location.hash) {
-                                        document.location.reload();
-                                    } else if (that.redirect) {
-                                        document.location.hash = that.redirect;
-                                    }
-                                } else {
-                                    $message.addClass('alert-error').html(response.message);
+                                that.cancel();
+                                if (that.redirect === document.location.hash) {
+                                    document.location.reload();
+                                } else if (that.redirect) {
+                                    document.location.hash = that.redirect;
                                 }
                             },
                             error: function (response) {
-                                $message.addClass('alert-error').html(response.message);
+                                $message.addClass('alert-error').html(response.responseText);
                             }
                         });
                     }
