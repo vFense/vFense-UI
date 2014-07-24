@@ -38,8 +38,8 @@ define(
                 },
                 renderDeleteContent: function () {
                     return crel('div', {class: 'customerRemovalDiv'},
-                        crel('label', {for: 'deleteAllAgents'}, 'type ',
-                            crel('strong', 'yes'), ' to delete all agents'
+                        crel('label', {for: 'deleteAllAgents'}, 'Type ',
+                            crel('strong', 'YES'), ' to delete view'
                         ),
                         crel('input', {type: 'text', id: 'deleteAllAgents', required: 'required', style: 'width: 97%'}),
                         crel('span', {class: 'help-online'})
@@ -155,12 +155,7 @@ define(
                             type: 'DELETE',
                             contentType: 'application/json',
                             success: function (response) {
-                                that.cancel();
-                                if (that.redirect === document.location.hash) {
-                                    document.location.reload();
-                                } else if (that.redirect) {
-                                    document.location.hash = that.redirect;
-                                }
+                                that.trigger('deleted').cancel();
                             },
                             error: function (response) {
                                 $message.addClass('alert-error').html(response.responseText);

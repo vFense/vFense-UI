@@ -1,6 +1,6 @@
 define(
-    ['jquery', 'underscore', 'backbone', 'app', 'crel', 'utilities/utils', 'modals/admin/deleteCustomer', 'text!templates/modals/admin/views.html'],
-    function ($, _, Backbone, app, crel, Utils, DeleteCustomerModal, CustomersTemplate) {
+    ['jquery', 'underscore', 'backbone', 'app', 'crel', 'utilities/utils', 'modals/admin/deleteView', 'text!templates/modals/admin/views.html'],
+    function ($, _, Backbone, app, crel, Utils, DeleteViewModal, CustomersTemplate) {
         'use strict';
         var exports = {
             Collection: Backbone.Collection.extend({
@@ -154,23 +154,27 @@ define(
                 },
                 deleteCustomer: function (event) {
                     var that = this,
-                        DeletePanel = DeleteCustomerModal.View.extend({
+                        DeletePanel = DeleteViewModal.View.extend({
 //                            confirm: that.deleteCustomer
                         });
                     if (this.deleteCustomerModal) {
                         this.deleteCustomerModal.close();
                         this.deleteCustomerModal = undefined;
                     }
-
                     this.deleteCustomerModal = new DeletePanel({
                         name: $(event.currentTarget).val(),
                         type: 'customer',
                         url: 'api/v1/views',
-                        redirect: '#admin/customers',
                         data: this.collection.toJSON()[0].data,
                         customers: app.user.toJSON().customers
                     }).open();
+                    this.listenTo(this.deleteCustomerModal, 'deleted', function () {
+                        that.collection.fetch();
+                    });
                     return this;
+                },
+                test: function () {
+                    console.log('test here');
                 },
                 createCustomer: function (event) {
                     event.preventDefault();
