@@ -6,6 +6,9 @@ define(
             Collection: Backbone.Collection.extend({
                 baseUrl: 'api/v1/users',
                 params: {},
+                parse: function (response) {
+                    return response.data;
+                },
                 url: function () {
                     return this.baseUrl + '?' + $.param(this.params);
                 }
@@ -20,7 +23,7 @@ define(
             View: Backbone.View.extend({
                 initialize: function () {
                     this.template = myTemplate;
-                    this.customerContext = app.user.toJSON().current_customer;
+                    this.user = app.user.toJSON();
                     this.collection = new exports.Collection();
                     this.collection.params = {};
                     this.listenTo(this.collection, 'sync', this.render);
@@ -112,7 +115,7 @@ define(
                     return this;
                 },
                 changeCustomerContext: function (event) {
-                    this.collection.params.customer_context = this.customerContext = event.val;
+                    this.collection.params.view_context = this.user.current_view = event.val;
                     this.collection.fetch();
                     return this;
                 },
@@ -479,16 +482,16 @@ define(
                     if (this.beforeRender !== $.noop) { this.beforeRender(); }
 
                     var template = _.template(this.template),
-                        data = this.collection.toJSON()[0],
+                        data = this.collection.toJSON(),
                         groups = this.groupCollection.toJSON()[0],
-                        customers = app.user.toJSON(),
+                        customers = this.user.views,
                         payload;
-                    if (data && data.rv_status_code === 1001 && groups && groups.rv_status_code === 1001) {
+                    if (data && groups) {
                         payload = {
-                            data: data.data,
+                            data: data,
                             groups: groups.data,
-                            customers: customers.customers,
-                            currentCustomer: this.customerContext,
+                            customers: customers,
+                            currentCustomer: this.user.current_view,
                             viewHelpers: {
                                 getOptions: function (options, selected) {
                                     var select = crel('select'), attributes;
@@ -554,8 +557,8 @@ define(
                                 }
                             }
                         };
-                        this.$el.empty();
-                        this.$el.html(template(payload));
+                        console.log('payload: ', payload);
+                        this.$el.empty().html(template(payload));
 
                         if (this.onRender !== $.noop) { this.onRender(); }
                     }
