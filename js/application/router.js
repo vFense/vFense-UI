@@ -229,7 +229,7 @@ define(
                     url = 'api/v1/user/' + loggedInUser,
                     that = this,
                     params = {
-                        current_customer: customerName
+                        current_view: customerName
                     };
                 $.ajax({
                     type: 'PUT',
@@ -237,15 +237,14 @@ define(
                     data: JSON.stringify(params),
                     dataType: 'json',
                     contentType: 'application/json',
-                    success: function(response) {
-                        if (response.rv_status_code === 13001) {
-                            app.notifyOSD.createNotification('!', 'Customer Changed', 'Access to customer granted');
-                            app.vent.trigger('customer:change', customerName);
-                            that.toDashboard();
-                        } else {
-                            app.notifyOSD.createNotification('', 'Insufficient Permissions', 'Access to customer is not allowed');
-                            that.navigate(that.getLastFragment(), {trigger: true});
-                        }
+                    success: function (response) {
+                        app.notifyOSD.createNotification('!', 'Customer Changed', 'Access to customer granted');
+                        app.vent.trigger('customer:change', customerName);
+                        that.toDashboard();
+                    },
+                    error: function (response) {
+                        app.notifyOSD.createNotification('', 'Insufficient Permissions', 'Access to customer is not allowed');
+                        that.navigate(that.getLastFragment(), {trigger: true});
                     }
                 });
             },
