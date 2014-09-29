@@ -291,7 +291,7 @@ define(
                     event.preventDefault();
                     var agent = this.agent,
                         url = 'api/v1/agent/' + agent,
-                        params = {apps_refresh: true};
+                        params = {refresh_apps: true};
                     helpers.agentCall(url, params, 'get the latest application updates. This process may take several minutes');
                     return this;
                 },

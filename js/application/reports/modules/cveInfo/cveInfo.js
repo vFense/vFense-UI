@@ -8,14 +8,14 @@ define(
                     name: 'MAIN',
                     keys: [
                         {name: 'cve_id', title: 'CVE ID:'},
-                        {name: 'cve_sev', title: 'CVE Severity:'},
-                        {name: 'cve_published_date', title: 'CVE Published Date:'},
-                        {name: 'cve_modified_date', title: 'CVE Modified Date:'}
+                        {name: 'severity', title: 'CVE Severity:'},
+                        {name: 'date_posted', title: 'CVE Published Date:'},
+                        {name: 'date_modified', title: 'CVE Modified Date:'}
                     ]
                 },
                 '#cvssvector': {
                     name: 'CVSS Vector',
-                    keys: [{name: 'cvss_vector', title: 'CVSS Vector:', cvssVector: [
+                    keys: [{name: 'vector', title: 'CVSS Vector:', cvssVector: [
                         {name: 'metric', value: 'value'}
                     ]
                     }]
@@ -23,22 +23,25 @@ define(
                 '#classification': {
                     name: 'Classification',
                     keys: [
-                        {name: 'cvss_impact_subscore', title: 'CVSS Impact Sub Score:'},
-                        {name: 'cvss_exploit_subscore', title: 'CVSS Exploit Sub Score:'}
+                        {name: 'impact_score', title: 'CVSS Impact Sub Score:'},
+                        {name: 'exploit_score', title: 'CVSS Exploit Sub Score:'}
                     ]
                 },
                 '#references': {
                     name: 'References',
-                    keys: [{name: 'cve_refs', title: 'CVE References:', references: [
+                    keys: [{name: 'references', title: 'CVE References:', references: [
                         {name: 'url', title: 'URL:'},
                         {name: 'source', title: 'Source:'},
+                        {name: 'patch', title: 'Patch:'},
+                        {name: 'advisory', title: 'Advisory:'},
+                        {name: 'signature', title: 'Signature:'},
                         {name: 'id', title: 'ID:'}
                     ]
                     }]
                 },
                 '#description': {
                     name: 'Description',
-                    keys: [{name: 'cve_descriptions', title: 'CVE Description:', cveDescription: [
+                    keys: [{name: 'descriptions', title: 'CVE Description:', cveDescription: [
                         {name: 'description', title: 'Description:'},
                         {name: 'source', title: 'Source:'}
                     ]
@@ -53,8 +56,8 @@ define(
                 '#cvssscore': {
                     name: 'CVSS Score',
                     keys: [
-                        {name: 'cvss_score', title: 'CVSS Score:'},
-                        {name: 'cvss_base_score', title: 'CVSS Base Score:'}
+                        {name: 'score', title: 'CVSS Score:'},
+                        {name: 'base_score', title: 'CVSS Base Score:'}
                     ]
                 }
             };
