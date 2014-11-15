@@ -116,7 +116,7 @@ define(
                     return fragment;
                 },
                 renderTabs: function(model) {
-                    if (model.get('http_status') !== 200) {
+                    if (model.get('http_status_code') !== 200) {
                         throw new Error('API was not able to fetch data');
                     }
                     var selected,
