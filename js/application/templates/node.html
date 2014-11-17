@@ -14,7 +14,7 @@
             <dt>Computer Name:</dt><dd><% model['computer_name'] ? print('<span>' + model['computer_name'] +'</span>') : print('<em>Not listed</em>'); %></dd>
             <dt>Display Name:</dt><dd><% model['display_name'] ? print('<span>' + model['display_name'] + '</span>') : print('<em>Not listed</em>'); %>&nbsp;<a href="#" id="editDisplay" data-placement="right" name="editPopover"><i class="icon-pencil" title="Edit Display Name" style="color: #daa520"></i></a></dd>
             <dt>Hostname:</dt><dd><% model['host_name'] ? print('<span>' + model['host_name'] + '</span>') : print('<em>Not listed</em>'); %>&nbsp;<a href="#" id="editHost" data-placement="right" name="editPopover"><i class="icon-pencil" title="Edit Hostname" style="color: #daa520"></i></a></dd>
-            <dt>Production State:</dt><dd><%= model.production_level || 'N/A' %></dd>
+            <dt>Environment:</dt><dd><%= model.environment || 'N/A' %></dd>
             <dt>Operating System:</dt>
             <dd>
                 <% print(model['os_string'] || '<em>Not listed</em>'); %>&nbsp;

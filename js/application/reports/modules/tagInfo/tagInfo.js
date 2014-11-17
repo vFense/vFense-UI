@@ -9,7 +9,7 @@ define(
                     keys: [
                         {name: 'tag_name', title: 'Tag Name:'},
                         {name: 'view_name', title: 'View:'},
-                        {name: 'production_level', title: 'Production State:'}
+                        {name: 'environment', title: 'Environment:'}
                     ]
                 },
                 '#agents': {

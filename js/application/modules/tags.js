@@ -164,7 +164,7 @@ define(
                     var sortFragment = document.createDocumentFragment();
                     sortFragment.appendChild(crel('small', 'Sort By'));
                     sortFragment.appendChild(crel('span', ' '));
-                    sortFragment.appendChild(crel('select', {name: 'sort', style: 'width: auto'}, crel('option',{value: 'tag_name'},'Tag Name'), crel('option',{value: 'production_level'}, 'Production Level')));
+                    sortFragment.appendChild(crel('select', {name: 'sort', style: 'width: auto'}, crel('option',{value: 'tag_name'},'Tag Name'), crel('option',{value: 'environment'}, 'Environment')));
                     sortFragment.appendChild(crel('span', ' '));
                     sortFragment.appendChild(crel('select', {name: 'order'}, crel('option',{value: 'asc'},'Ascending'), crel('option',{value: 'desc'},'Descending')));
                     sortFragment.appendChild(crel('span', ' '));
@@ -181,7 +181,7 @@ define(
                         crel('span', {class: 'span2'},
                             crel('strong', 'Tag Name')),
                         crel('span', {class: 'span2'}, 'View'),
-                        crel('span', {class: 'span2'}, 'Production Level'),
+                        crel('span', {class: 'span2'}, 'Environment'),
                         crel('span', {class: 'span1'}, 'Updates'),
                         crel('span', {class: 'span2'}, 'Vulnerabilities'),
                         crel('span', {class: 'span1'}, 'Agents')
@@ -196,7 +196,7 @@ define(
                         tagID               = item.get('tag_id'),
                         tagName             = item.get('tag_name'),
                         view                = item.get('view_name'),
-                        productionLevel     = item.get('production_level'),
+                        environment         = item.get('environment'),
                         updates             = item.get('available_updates'),
                         vulnerabilities     = item.get('available_vulnerabilities'),
                         agents              = item.get('agents');
@@ -220,7 +220,7 @@ define(
                                         crel('i', {class: 'icon-remove', style: 'color: red', title: 'Delete Tag'}))),
                                 crel('span', {class: 'span2'}, tagName),
                                 crel('span', {class: 'span2'}, view),
-                                crel('span', {class: 'span2'}, productionLevel),
+                                crel('span', {class: 'span2'}, environment),
                                 crel('span', {class: 'span1'}, updates),
                                 crel('span', {class: 'span2'}, vulnerabilities),
                                 crel('span', {class: 'span1'}, agents)

@@ -116,8 +116,8 @@ define(
                     if($selectedValue === 'os_code' || $selectedValue === 'os_string'){
                         this.filterCollection.url = '/api/v1/supported/operating_system?'+$selectedValue+'=true';
                     }
-                    else if($selectedValue === 'production_level'){
-                        this.filterCollection.url = '/api/v1/supported/production_levels';
+                    else if($selectedValue === 'environment'){
+                        this.filterCollection.url = '/api/v1/supported/environments';
                     }
                     else if($selectedValue === 'agent_status'){
                         var $header = this.$el.find('header');
@@ -167,7 +167,7 @@ define(
                     sortFilterFragment.appendChild(crel('span', ' '));
                     sortFilterFragment.appendChild(crel('small', 'Filter By'));
                     sortFilterFragment.appendChild(crel('span', ' '));
-                    sortFilterFragment.appendChild(crel('select', {name: 'filterKey', style: 'width: auto'}, crel('option',{value: 'none'}, 'None'), crel('option',{value: 'os_code'}, 'OS Code'), crel('option',{value: 'os_string'},'OS String'), crel('option',{value: 'agent_status'}, 'Agent Status'), crel('option',{value: 'production_level'}, 'Production Level')));
+                    sortFilterFragment.appendChild(crel('select', {name: 'filterKey', style: 'width: auto'}, crel('option',{value: 'none'}, 'None'), crel('option',{value: 'os_code'}, 'OS Code'), crel('option',{value: 'os_string'},'OS String'), crel('option',{value: 'agent_status'}, 'Agent Status'), crel('option',{value: 'environment'}, 'Environment')));
                     sortFilterFragment.appendChild(crel('span', ' '));
                     sortFilterFragment.appendChild(crel('select', {name: 'filterValue', disabled: 'disabled'} ));
                     sortFilterFragment.appendChild(crel('span', ' '));
