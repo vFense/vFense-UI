@@ -81,7 +81,7 @@ define(
                         contentType: 'application/json',
                         data: JSON.stringify(params),
                         success: function (response) {
-                            if (response.http_status === 200) {
+                            if (parseInt(response.http_status_code) == 200) {
                                 app.notifyOSD.createNotification('', 'Operation Processed', 'Application has been deleted.');
                                 that.pager.collection.fetch();
                             }
@@ -120,7 +120,7 @@ define(
                             contentType: 'application/json',
                             data: JSON.stringify(params),
                             success: function (response) {
-                                if (response.http_status === 200) {
+                                if (parseInt(response.http_status_code) == 200) {
                                     app.notifyOSD.createNotification('', 'Operation Processed', 'Application(s) hidden status has been changed.');
                                     that.pager.collection.fetch();
                                 }

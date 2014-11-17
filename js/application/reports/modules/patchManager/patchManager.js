@@ -228,7 +228,7 @@ define(
                     return string.charAt(0).toUpperCase() + string.slice(1);
                 },
                 renderTabs: function (model) {
-                    if (model.get('http_status') !== 200) {
+                    if (parseInt(model.get('http_status_code')) != 200) {
                         throw new Error('patchManager cannot fetch from current API');
                     }
                     var fragment = document.createDocumentFragment(),
@@ -536,7 +536,7 @@ define(
                             data: JSON.stringify(params),
                             dataType: 'json',
                             success: function (response) {
-                                if (response.http_status === 200) {
+                                if (parseInt(response.http_status_code) == 200) {
                                     app.notifyOSD.createNotification('!', 'Success', 'Operation Sent');
                                     that._forcedRendering = true;
                                     that.data.fetch();

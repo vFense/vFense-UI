@@ -115,7 +115,7 @@ define(
                     return fragment;
                 },
                 renderTabs: function (model) {
-                    if (model.get('http_status') !== 200) {
+                    if (parseInt(model.get('http_status_code')) != 200) {
                         throw new Error('API was not able to fetch data');
                     }
                     var selected, $navTabs = this.$el.find('.nav-tabs'),
@@ -254,7 +254,7 @@ define(
                             contentType: 'application/json',
                             data: JSON.stringify(params),
                             success: function (response) {
-                                if (response.http_status === 200) {
+                                if (parseInt(response.http_status_code) == 200) {
                                     $message.removeClass('alert-info alert-success alert-error').addClass('alert-error').html('');
                                     that.cancel();
                                     that.options.parentView.data.fetch();
