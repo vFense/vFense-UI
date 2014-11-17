@@ -153,7 +153,7 @@ define(
                             },
                             results: function (data) {
                                 var results = [];
-                                if (parseInt(data.http_status_code)) == 200) {
+                                if (parseInt(data.http_status_code) == 200) {
                                     _.each(data.data, function (object) {
                                         results.push({id: object.agent_id || object.tag_id, text: object.tag_name || object.computer_name});
                                     });
