@@ -93,7 +93,7 @@ define(
                     return fragment;
                 },
                 renderTabs: function (model) {
-                    if (model.get('http_status') !== 200) {
+                    if (parseInt(model.get('http_status_code')) != 200) {
                         throw new Error('API was not able to fetch data');
                     }
                     var selected, $navTabs = this.$el.find('.nav-tabs'),
@@ -180,7 +180,7 @@ define(
                         data: JSON.stringify(params),
                         contentType: 'application/json',
                         success: function (response) {
-                            if (response.http_status === 200) {
+                            if (parseInt(response.http_status_code) == 200) {
                                 app.notifyOSD.createNotification('!', 'Server acknowledged', 'Computer will be rebooted');
                             } else {
                                 app.notifyOSD.createNotification('!', 'Error', response.message);

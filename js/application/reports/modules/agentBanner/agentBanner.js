@@ -53,7 +53,7 @@ define(
                     data: JSON.stringify(params),
                     contentType: 'application/json',
                     success: function (response) {
-                        if (response.http_status !== 200) {
+                        if (parseInt(response.http_status_code) != 200) {
                             app.notifyOSD.createNotification('!', 'Error', response.message);
                         } else {
                             app.notifyOSD.createNotification('', 'Server acknowledged', 'Computer will ' + action + '.');
@@ -89,7 +89,7 @@ define(
                             return this.baseUrl + that.agent;
                         },
                         parse: function (response) {
-                            if (response.http_status !== 200) {
+                            if (parseInt(response.http_status_code) != 200) {
                                 throw new Error('patchManager cannot fetch from current API');
                             }
                             return response.data;
@@ -324,7 +324,7 @@ define(
                             contentType: 'application/json',
                             data: JSON.stringify(params),
                             success: function (response) {
-                                if (response.http_status === 200) {
+                                if (parseInt(response.http_status_code) == 200) {
                                     $message.removeClass('alert-info alert-success alert-error').addClass('alert-error').html('');
                                     that.cancel();
                                 }

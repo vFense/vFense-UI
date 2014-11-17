@@ -197,7 +197,7 @@ define(
                         type: 'DELETE',
                         contentType: 'application/json',
                         success: function (response) {
-                            if (response.http_status === 200) {
+                            if (parseInt(response.http_status_code) == 200) {
                                 that.pager.render();
                             } else {
                                 app.notifyOSD.createNotification('!', 'Error', response.message);
@@ -251,7 +251,7 @@ define(
                             type: 'PUT',
                             data: JSON.stringify(params),
                             success: function (response) {
-                                if (response.http_status === 200) {
+                                if (parseInt(response.http_status_code) == 200) {
                                     $form[0].reset();
                                     that.renderView('#main');
                                     app.notifyOSD.createNotification('', 'Success', 'Rule Updated');
@@ -297,7 +297,7 @@ define(
                             type: 'POST',
                             data: JSON.stringify(params),
                             success: function (response) {
-                                if (response.http_status === 200) {
+                                if (parseInt(response.http_status_code) == 200) {
                                     $form[0].reset();
                                     app.notifyOSD.createNotification('', 'Success', 'Rule Created');
                                 } else {

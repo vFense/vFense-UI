@@ -197,7 +197,7 @@ define(
                             },
                             results: function (data) {
                                 var results = [{id: 'all', text: 'All'}];
-                                if (data.http_status === 200) {
+                                if (parseInt(data.http_status_code) == 200) {
                                     _.each(data.data, function (object) {
                                         results.push({id: object.tag_id, text: object.tag_name});
                                     });
@@ -217,7 +217,7 @@ define(
                             },
                             results: function (data) {
                                 var results = [{id: 'all', text: 'All'}];
-                                if (data.http_status === 200) {
+                                if (parseInt(data.http_status_code) == 200) {
                                     _.each(data.data, function (object) {
                                         results.push({id: object.agent_id, text: object.display_name || object.computer_name});
                                     });
@@ -429,7 +429,7 @@ define(
                         contentType: 'application/json',
                         data: JSON.stringify(params),
                         success: function (response) {
-                            if (response.http_status === 200) {
+                            if (parseInt(response.http_status_code) == 200) {
                                 $message.removeClass('alert-error alert-info').addClass('alert-success').html(response.message);
                                 that.cancel();
                                 that.parentView.collection.fetch();
@@ -464,7 +464,7 @@ define(
                         type: 'DELETE',
                         contentType: 'application/json',
                         success: function (response) {
-                            if (response.http_status === 200) {
+                            if (parseInt(response.http_status_code) == 200) {
                                 that.collection.fetch();
                             } else {
                                 $alert.removeClass('alert-success').addClass('alert-error').html(response.message).show();

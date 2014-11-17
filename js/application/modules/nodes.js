@@ -229,7 +229,7 @@ define(
                     return this;
                 },
                 renderModel: function (item) {
-                    if (_.has(item.attributes, 'http_status') && item.get('http_status') === 500) {
+                    if (_.has(item.attributes, 'http_status_code') && parseInt(item.get('http_status_code')) == 500) {
                         return crel('div',  {class: 'item linked clearfix'}, 'No Data.');
                     }
                     var fragment            = document.createDocumentFragment(),
@@ -382,7 +382,7 @@ define(
                         contentType: 'application/json',
                         data: JSON.stringify(params),
                         success: function (response) {
-                            if (response.http_status === 200) {
+                            if (parseInt(response.http_status_code) == 200) {
                                 $message.removeClass('alert-info alert-success alert-error').addClass('alert-error').html('');
                                 that.cancel();
                                 that.options.parentView.collection.fetch();

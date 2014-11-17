@@ -78,7 +78,7 @@ define(
                         url: 'upload/package',
                         add: function (e, data) {
                             $.get('/api/v1/apps/custom/upload/uuid', function (response) {
-                                if (response.http_status === 200) {
+                                if (parseInt(response.http_status_code) == 200) {
                                     $fileTable.empty().css('color', 'black').append(
                                         crel('tr',
                                             crel('td', {style: 'width: 25%; word-wrap: break-word;'}, 'Name:'),
@@ -168,7 +168,7 @@ define(
                         contentType: 'application/json',
                         data: JSON.stringify(params),
                         success: function (response) {
-                            if (response.http_status === 200) {
+                            if (parseInt(response.http_status_code) == 200) {
                                 that.close();
                             } else {
                                 $message.removeClass('alert-success alert-info').addClass('alert-error').html(response.message);

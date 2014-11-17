@@ -68,7 +68,7 @@ define(
                         type: 'DELETE',
                         contentType: 'application/json',
                         success: function (response) {
-                            if (response.http_status === 200) {
+                            if (parseInt(response.http_status_code) == 200) {
                                 that.pager.render();
                             } else {
                                 app.notifyOSD.createNotification('!', 'Error', response.message);
@@ -146,7 +146,7 @@ define(
                             type: type,
                             data: JSON.stringify(params),
                             success: function (response) {
-                                if (response.http_status === 200) {
+                                if (parseInt(response.http_status_code) == 200) {
                                     that.pager.render();
                                     app.notifyOSD.createNotification('', 'Success', 'Relay Server Added');
                                 } else {

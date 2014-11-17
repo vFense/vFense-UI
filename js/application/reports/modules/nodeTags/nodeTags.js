@@ -93,7 +93,7 @@ define(
                         contentType: 'application/json',
                         dataType: 'json',
                         success: function (response) {
-                            if (response.http_status === 200) {
+                            if (parseInt(response.http_status_code) == 200) {
                                 if (method === 'DELETE') {
                                     message += ' was removed.';
                                 } else {
@@ -126,7 +126,7 @@ define(
                     }
                 },
                 renderTags: function (model) {
-                    if (model.get('http_status') !== 200) {
+                    if (parseInt(model.get('http_status_code')) != 200) {
                         throw new Error('API was not able to fetch data');
                     }
                     var $select = this.$('input'),
@@ -153,7 +153,7 @@ define(
                             },
                             results: function (data) {
                                 var results = [];
-                                if (data.http_status === 200) {
+                                if (parseInt(data.http_status_code)) == 200) {
                                     _.each(data.data, function (object) {
                                         results.push({id: object.agent_id || object.tag_id, text: object.tag_name || object.computer_name});
                                     });

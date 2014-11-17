@@ -57,7 +57,7 @@ define(
                             type: 'DELETE',
                             contentType: 'application/json',
                             success: function (response) {
-                                if (response.http_status === 200) {
+                                if (parseInt(response.http_status_code) == 200) {
                                     that.cancel();
                                     if (that.redirect === document.location.hash) {
                                         document.location.reload();
