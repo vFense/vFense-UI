@@ -61,7 +61,7 @@ define(
                                     data: JSON.stringify(params),
                                     contentType: 'application/json',
                                     success: function (response) {
-                                        if (response.http_status === 200) {
+                                        if (parseInt(response.http_status_code) == 200) {
                                             that.collection.fetch();
                                             $message.removeClass('alert-info alert-success alert-error').addClass('alert-error').html('');
                                             $tagname.val('');
@@ -147,8 +147,9 @@ define(
                         data: JSON.stringify(params),
                         contentType: 'application/json',
                         success: function (response) {
-                            if (response.http_status === 200) {
+                            if (parseInt(response.http_status_code) == 200) {
                                 that.collection.fetch();
+                                app.notifyOSD.createNotification('!', 'Deleted', response.message);
                             } else {
                                 app.notifyOSD.createNotification('!', 'Error', response.message);
                             }
