@@ -58,7 +58,7 @@ define(
                             dataType: 'json',
                             contentType: 'application/json',
                             success: function(response) {
-                                if (response.rv_status_code === 13001)
+                                if (parseInt(response.vfense_status_code) == 13001)
                                 {
                                     if (reset)
                                     {

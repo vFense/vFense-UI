@@ -68,7 +68,7 @@ define(
                         dataType: 'json',
                         contentType: 'application/json',
                         success: function(response) {
-                            if (response.rv_status_code) {
+                            if (response.vfense_status_code) {
                                 $alert.hide();
                             } else {
                                 $alert.removeClass('alert-success').addClass('alert-error').show().find('span').html(response.message);
@@ -103,7 +103,7 @@ define(
                                 },
                                 results: function (data) {
                                     var results = [];
-                                    if (data.rv_status_code === 1001) {
+                                    if (data.vfense_status_code === 1001) {
                                         _.each(data.data, function (object) {
                                             results.push({id: object.id || object.user_name, text: object.group_name ? object.group_name : object.user_name});
                                         });

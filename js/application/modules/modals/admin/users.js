@@ -69,7 +69,7 @@ define(
                         dataType: 'json',
                         contentType: 'application/json',
                         success: function(response) {
-                            if(response.rv_status_code === 13001)
+                            if(response.vfense_status_code === 13001)
                             {
                                 if(icon.hasClass('icon-ban-circle'))
                                 {
@@ -153,7 +153,7 @@ define(
                         dataType: 'json',
                         contentType: 'application/json',
                         success: function(response){
-                            if (response.rv_status_code) {
+                            if (response.vfense_status_code) {
                                 $userRow.remove();
                                 $alert.removeClass('alert-error').addClass('alert-success').show().find('span').html(response.message);
                             } else {
@@ -281,7 +281,7 @@ define(
                         dataType: 'json',
                         contentType: 'application/json',
                         success: function(response) {
-                            if (response.rv_status_code) {
+                            if (response.vfense_status_code) {
                                 that.collection.fetch();
                             } else {
                                 $alert.removeClass('alert-success').addClass('alert-error').html(response.message).show();
@@ -314,7 +314,7 @@ define(
                         dataType: 'json',
                         contentType: 'application/json',
                         success: function(response) {
-                            if (response.rv_status_code) {
+                            if (response.vfense_status_code) {
                                 $alert.hide();
                             } else {
                                 $alert.removeClass('alert-success').addClass('alert-error').show().find('span').html(response.message);
@@ -353,7 +353,7 @@ define(
                             },
                             results: function (data) {
                                 var results = [];
-                                if (data.rv_status_code === 1001) {
+                                if (data.vfense_status_code === 1001) {
                                     _.each(data.data, function (object) {
                                         results.push({id: object.id, text: object.group_name});
                                     });
@@ -403,7 +403,7 @@ define(
                                     },
                                     results: function (data) {
                                         var results = [];
-                                        if (data.rv_status_code === 1001) {
+                                        if (data.vfense_status_code === 1001) {
                                             _.each(data.data, function (object) {
                                                 results.push({id: object.group_id || object.customer_name, text: object.group_name ? object.group_name : object.customer_name});
                                             });
@@ -465,7 +465,7 @@ define(
                                     },
                                     results: function (data) {
                                         var results = [];
-                                        if (data.rv_status_code === 1001) {
+                                        if (data.vfense_status_code === 1001) {
                                             _.each(data.data, function (object) {
                                                 results.push({id: object.id || object.customer_name, text: object.group_name ? object.group_name : object.customer_name});
                                             });

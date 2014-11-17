@@ -68,7 +68,7 @@ define(
                         dataType: 'json',
                         contentType: 'application/json',
                         success: function(response){
-                            if (response.rv_status_code) {
+                            if (response.vfense_status_code) {
 //                                that.collection.fetch();
                                 $groupRow.remove();
                                 $alert.removeClass('alert-success').addClass('alert-error').show().find('span').html(response.message);
@@ -112,7 +112,7 @@ define(
                         dataType: 'json',
                         contentType: 'application/json',
                         success: function(response) {
-                            if (response.rv_status_code) {
+                            if (response.vfense_status_code) {
                                 $alert.hide();
                                 that.collection.fetch();
                             } else {
@@ -155,7 +155,7 @@ define(
                         dataType: 'json',
                         contentType: 'application/json',
                         success: function(response) {
-                            if (response.rv_status_code === 13007) {
+                            if (response.vfense_status_code === 13007) {
                                 $alert.hide();
                             } else {
                                 $alert.removeClass('alert-success').addClass('alert-error').show().find('span').html(response.message);
@@ -176,7 +176,7 @@ define(
                             customer_context: this.customerContext
                         };
                     $.post(url, params, function (response) {
-                        if (response.rv_status_code) {
+                        if (response.vfense_status_code) {
                             $alert.hide();
                         } else {
                             $alert.removeClass('alert-success').addClass('alert-error').show().find('span').html(response.message);
@@ -260,7 +260,7 @@ define(
                         fragment = document.createDocumentFragment(),
                         data = this.collection.toJSON()[0],
                         deleteButton;
-                    if (data && data.rv_status_code === 1001) {
+                    if (data && data.vfense_status_code === 1001) {
                         _.each(data.data, function (group) {
                             if (group.group_name === 'Administrator') {
                                 deleteButton = '';
@@ -327,7 +327,7 @@ define(
                                 },*/
                                 results: function (data) {
                                     var results = [];
-                                    if (data.rv_status_code === 1001) {
+                                    if (data.vfense_status_code === 1001) {
                                         _.each(data.data.users, function (object) {
                                             results.push({id: object.user_name, text: object.user_name});
                                         });
@@ -347,7 +347,7 @@ define(
                         customers = app.user.toJSON().customers,
                         payload;
 
-                    if (data && data.rv_status_code === 1001) {
+                    if (data && data.vfense_status_code === 1001) {
                         payload = {
                             data: data.data,
                             customers: customers,
