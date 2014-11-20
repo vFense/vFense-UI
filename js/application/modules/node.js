@@ -40,7 +40,7 @@ define(
                                 {
                                     moduleName: 'reports/modules/gauges/gauges',
                                     moduleJSON: {
-                                        'URL':'/api/monitor/cpu?agent_id=' + nodeID,
+                                        'URL':'/api/v1/agent/' + nodeID + '/stats/cpu',
                                         'key':'used',
                                         APIName:'CPU Usage',
                                         updateTime: 30000
@@ -51,7 +51,7 @@ define(
                                 {
                                     moduleName: 'reports/modules/gauges/gauges',
                                     moduleJSON: {
-                                        'URL': '/api/monitor/memory?agent_id=' + nodeID,
+                                        'URL':'/api/v1/agent/' + nodeID + '/stats/memory',
                                         'key': 'used_percent',
                                         APIName:'Memory Usage',
                                         updateTime: 30000
@@ -62,7 +62,7 @@ define(
                                 {
                                     moduleName: 'reports/modules/gauges/gauges',
                                     moduleJSON: {
-                                        'URL': '/api/monitor/filesystem?agent_id=' + nodeID,
+                                        'URL':'/api/v1/agent/' + nodeID + '/stats/filesystem',
                                         'key': 'used_percent',
                                         APIName:'HDD Usage',
                                         updateTime: 30000
