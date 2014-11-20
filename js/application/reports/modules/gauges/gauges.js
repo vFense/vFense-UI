@@ -130,7 +130,7 @@ define(
                     var dataCollection, models, data;
                     if (this.collection && this.collection instanceof Backbone.Collection) {
                         dataCollection = this.collection.toJSON();
-                        if (dataCollection[0].pass === true && (typeof dataCollection[0].data !== 'undefined')) {
+                        if (parseInt(dataCollection[0].http_status_code) == 200 && (typeof dataCollection[0].data !== 'undefined')) {
                             models = dataCollection[0].data;
                             if(_.isArray(models)) {
                                 data = this.averageArray(_.pluck(models,this.model.get('key')));

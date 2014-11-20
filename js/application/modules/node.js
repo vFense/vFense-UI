@@ -41,7 +41,7 @@ define(
                                     moduleName: 'reports/modules/gauges/gauges',
                                     moduleJSON: {
                                         'URL':'/api/v1/agent/' + nodeID + '/stats/cpu',
-                                        'key':'used',
+                                        'key':'system',
                                         APIName:'CPU Usage',
                                         updateTime: 30000
                                     },
@@ -62,7 +62,7 @@ define(
                                 {
                                     moduleName: 'reports/modules/gauges/gauges',
                                     moduleJSON: {
-                                        'URL':'/api/v1/agent/' + nodeID + '/stats/filesystem',
+                                        'URL':'/api/v1/agent/' + nodeID + '/stats/file_system',
                                         'key': 'used_percent',
                                         APIName:'HDD Usage',
                                         updateTime: 30000
