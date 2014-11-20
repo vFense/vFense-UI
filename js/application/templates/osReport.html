@@ -11,11 +11,11 @@
             <% if (models.length) { %>
                 <% _.each(models, function (model) { %>
                     <div class="item">
-                        <span class="span3"><%= model.get('computer-name') %></span>
-                        <span class="span2"><%= model.get('machine-type') %></span>
-                        <span class="span4"><%= model.get('os-name') %></span>
-                        <span class="span1"><%= model.get('os-type') %></span>
-                        <span class="span2 alignRight"><%= model.get('system-arch') %></span>
+                        <span class="span3"><%= model.get('computer_name') %></span>
+                        <span class="span2"><%= model.get('machine_type') %></span>
+                        <span class="span4"><%= model.get('os_string') %></span>
+                        <span class="span1"><%= model.get('os_code') %></span>
+                        <span class="span2 alignRight"><%= model.get('bit_type') %></span>
                     </div>
                 <% }); %>
             <% } else { %>

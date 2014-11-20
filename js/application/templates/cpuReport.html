@@ -11,11 +11,11 @@
             <% if (models.length) { %>
                 <% _.each(models, function (model) { %>
                     <div class="item">
-                        <span class="span3"><%= model.get('computer-name') %></span>
+                        <span class="span3"><%= model.get('computer_name') %></span>
                         <span class="span2"><%= model.get('user') %></span>
                         <span class="span2"><%= model.get('system') %></span>
                         <span class="span2"><%= model.get('idle') %></span>
-                        <span class="span3 alignRight"><%= model.get('last-updated-at') %></span>
+                        <span class="span3 alignRight"><%= model.get('last_updated') %></span>
                     </div>
                 <% }); %>
             <% } else { %>

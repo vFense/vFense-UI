@@ -17,7 +17,7 @@ define(
         }, exports = {
             Collection: Pager.Collection.extend({
                 baseUrl: 'api/v1/reports/',
-                reportType: 'osdetails',
+                reportType: 'os',
                 url: function () {
                     var url = this.baseUrl + this.reportType,
                         query = this.query();
@@ -38,12 +38,12 @@ define(
                 showLegend: false,
                 showHeader: false,
                 reportTemplates: {
-                    'osdetails': osReport,
-                    'networkdetails': networkReport,
-                    'memorydetails': memoryReport,
-                    'cpudetails': cpuReport,
-                    'diskdetails': hddReport,
-					'hardwaredetails': hardwareReport
+                    'os': osReport,
+                    'network': networkReport,
+                    'memory': memoryReport,
+                    'cpu': cpuReport,
+                    'file_system': hddReport,
+                    'hardware': hardwareReport
                 },
                 updateList: function (collection) {
                     var $items = this.$('.items'),

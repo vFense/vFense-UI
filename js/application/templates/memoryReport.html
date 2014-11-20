@@ -11,11 +11,11 @@
             <% if (models.length) { %>
                 <% _.each(models, function (model) { %>
                     <div class="item">
-                        <span class="span3"><%= model.get('computer-name') %></span>
-                        <span class="span2"><%= helpers.getDriveSize(model.get('free')) + ' (' + model.get('free-percent') + '%)' %></span>
-                        <span class="span2"><%= helpers.getDriveSize(model.get('used')) + ' (' + model.get('used-percentage') + '%)' %></span>
+                        <span class="span3"><%= model.get('computer_name') %></span>
+                        <span class="span2"><%= helpers.getDriveSize(model.get('free')) + ' (' + model.get('free_percent') + '%)' %></span>
+                        <span class="span2"><%= helpers.getDriveSize(model.get('used')) + ' (' + model.get('used_percent') + '%)' %></span>
                         <span class="span2"><%= helpers.getDriveSize(model.get('total')) %></span>
-                        <span class="span3 alignRight"><%= model.get('last-updated-at') %></span>
+                        <span class="span3 alignRight"><%= model.get('last_updated') %></span>
                     </div>
                 <% }); %>
             <% } else { %>
