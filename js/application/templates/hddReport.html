@@ -12,7 +12,7 @@
             <% if (models.length) { %>
                 <% _.each(models, function (model) { %>
                     <div class="item">
-                        <span class="span3"><%= model.get('computer-name') %></span>
+                        <span class="span3"><%= model.get('computer_name') %></span>
                         <% if (model.get('disk-usage').length) { %>
                             <% _.each(model.get('disk-usage'), function (disk, index) { %>
                                 <% if (index) { %> <span class="span3 noMargin"></span> <% } %>
