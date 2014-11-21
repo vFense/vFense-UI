@@ -9,12 +9,12 @@
         </div>
         <div class="items">
             <% if (models.length) { %>
+                <span class="span3"><%= models[0].computer_name %></span>
                 <% _.each(models, function (model) { %>
                     <div class="item">
-                        <span class="span3"><%= model.get('computer_name') %></span>
                         <% if (model.get('stats').length) { %>
                             <% _.each(model.stats, function (mem) { %>
-                                <span class="span2"><%= mem[0].get('free') + ' (' + mem[0].get('free_percent') + '%)' %></span>
+                                <span class="span2"><%= mem.get('free') + ' (' + mem.get('free_percent') + '%)' %></span>
                                 <span class="span2"><%= helpers.getDriveSize(mem.get('used')) + ' (' + mem.get('used_percent') + '%)' %></span>
                                 <span class="span3 alignRight"><%= mem.get('last_updated') %></span>
                             <% }); %>
