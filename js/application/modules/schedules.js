@@ -457,10 +457,10 @@ define(
                 removeSchedule: function (event) {
                     var that = this,
                         $removeButton = $(event.currentTarget),
-                        jobname = $removeButton.val(),
+                        jobid = $removeButton.id,
                         $alert = this.$el.find('.alert').first();
                     $.ajax({
-                        url: 'api/v1/schedule/' + jobname,
+                        url: 'api/v1/schedule/' + jobid,
                         type: 'DELETE',
                         contentType: 'application/json',
                         success: function (response) {
@@ -490,7 +490,7 @@ define(
                                         body.appendChild(
                                             crel('tr',
                                                 crel('td',
-                                                    crel('a', {href: '#schedules/' + item.name}, item.name)
+                                                    crel('a', {href: '#schedules/' + item.id}, item.name)
                                                 ),
                                                 crel('td', {class: 'alignCenter'}, item.operation || 'N/A'),
                                                 crel('td', {class: 'alignCenter'}, item.trigger || 'N/A'),
@@ -500,7 +500,7 @@ define(
                                                     crel('button', {class: 'btn btn-link noPadding', name: 'toggleDelete'},
                                                         crel('i', {class: 'icon-remove', style: 'color: red'})
                                                     ),
-                                                    crel('button', {class: 'btn btn-mini btn-danger hide', name: 'remove', value: item.job_name}, 'Delete'), ' ',
+                                                    crel('button', {class: 'btn btn-mini btn-danger hide', name: 'remove', value: item.name}, 'Delete'), ' ',
                                                     crel('button', {class: 'btn btn-mini hide', name: 'toggleDelete'}, 'Cancel')
                                                 )
                                             )

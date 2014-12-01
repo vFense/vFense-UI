@@ -70,7 +70,7 @@ define(
                                 }
                             }
                         };
-                    if (model.job_name) {
+                    if (model.name) {
                         this.$el.empty().append(tmpl(payload));
                     }
 
