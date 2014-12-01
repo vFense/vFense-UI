@@ -2,10 +2,10 @@
     <div class="well clearfix">
         <dl>
             <dt>Schedule Name:</dt>
-            <dd><%= model.job_name || 'N/A' %></dd>
+            <dd><%= model.name %></dd>
 
             <dt>Customer Name:</dt>
-            <dd><%= model.customer_name || 'N/A' %></dd>
+            <dd><%= model.view_name %></dd>
 
             <dt>Operation:</dt>
             <dd><%= viewHelpers.capitaliseFirstLetter(viewHelpers.parseOperationName(model.operation)) %></dd>
@@ -16,10 +16,10 @@
         <% } %>
 
             <dt>Schedule Type:</dt>
-            <dd><%= model.schedule_type || 'N/A' %></dd>
+            <dd><%= model.trigger || 'N/A' %></dd>
 
             <dt>Created By:</dt>
-            <dd><%= model.username || 'N/A' %></dd>
+            <dd><%= model.created_by || 'N/A' %></dd>
 
             <dt>Total Runs:</dt>
             <dd><%= model.runs %></dd>

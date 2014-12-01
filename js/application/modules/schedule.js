@@ -43,6 +43,9 @@ define(
                                     return string.charAt(0).toUpperCase() + string.slice(1);
                                 },
                                 renderItems: function (items, title, href) {
+                                    alert(items)
+                                    alert(title)
+                                    alert(href)
                                     if (items.length) {
                                         var fragment = crel('div'),
                                             list = crel('dl'), agent, appList;
@@ -70,7 +73,7 @@ define(
                                 }
                             }
                         };
-                    if (model.name) {
+                    if (model.id) {
                         this.$el.empty().append(tmpl(payload));
                     }
 
