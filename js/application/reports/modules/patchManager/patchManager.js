@@ -477,7 +477,7 @@ define(
                     }
                 },
                 initModal: function () {
-                    this.modal.$('input[name=time]').datetimepicker();
+                    this.modal.$('input[name=run_date]').datetimepicker();
                 },
                 addSchedule: function () {
                     var $form = this.$('form'),
@@ -519,8 +519,8 @@ define(
                     if (data.length) {
                         if ($schedule.is(':checked')) {
                             if (!_.isEmpty(this._schedule)) {
-                                params.time = new Date(this._schedule.time).getTime() / 1000;
-                                params.label = this._schedule.label;
+                                params.run_date = new Date(this._schedule.run_date).getTime() / 1000;
+                                params.job_name = this._schedule.job_name;
                                 //params.offset = this._schedule.offset;
                             } else {
                                 app.notifyOSD.createNotification('!', 'Error', 'Schedule fields are not ready');

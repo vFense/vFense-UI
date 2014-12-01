@@ -490,10 +490,10 @@ define(
                                         body.appendChild(
                                             crel('tr',
                                                 crel('td',
-                                                    crel('a', {href: '#schedules/' + item.job_name}, item.job_name)
+                                                    crel('a', {href: '#schedules/' + item.name}, item.name)
                                                 ),
                                                 crel('td', {class: 'alignCenter'}, item.operation || 'N/A'),
-                                                crel('td', {class: 'alignCenter'}, item.schedule_type || 'N/A'),
+                                                crel('td', {class: 'alignCenter'}, item.trigger || 'N/A'),
                                                 crel('td', {class: 'alignCenter'}, item.runs || 'N/A'),
                                                 crel('td', {class: 'alignRight'}, item.next_run_time || 'N/A'),
                                                 crel('td', {class: 'alignRight', 'data-group':'delete'},
