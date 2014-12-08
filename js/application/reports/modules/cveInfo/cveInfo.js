@@ -239,10 +239,17 @@ define(
                                     }
                                 });
                             }
-                            else if(typeof content === "number")
+                            //else if(typeof content === "number")
+                            else if(object.name.match(/date_*/))
                             {
                                 $dl.append(
                                     crel('tr', crel('th', object.title), crel('td', that.formatDate(data[object.name])))
+                                );
+                            }
+                            else if(typeof content === "number")
+                            {
+                                $dl.append(
+                                    crel('tr', crel('th', object.title),  crel('td', data[object.name]))
                                 );
                             }
                             else
