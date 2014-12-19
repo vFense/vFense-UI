@@ -75,9 +75,9 @@ define(
                         that = this;
                     $releaseDate.datepicker();
                     $fileInput.fileupload({
-                        url: 'upload/package',
+                        url: 'api/v1/apps/upload',
                         add: function (e, data) {
-                            $.get('/api/v1/apps/custom/upload/uuid', function (response) {
+                            $.get('/api/v1/uuid', function (response) {
                                 if (parseInt(response.http_status_code) == 200) {
                                     $fileTable.empty().css('color', 'black').append(
                                         crel('tr',
@@ -100,8 +100,8 @@ define(
                                     );
                                     $fileButton.html('Change File');
                                     data.headers = {
-                                        FileName: data.files[0].name,
-                                        FileUuid: response.data.uuid
+                                        'X-FileName': data.files[0].name,
+                                        'Fileuuid': response.data[0].uuid
                                     };
                                     data.submit();
                                 }
