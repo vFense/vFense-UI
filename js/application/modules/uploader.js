@@ -101,7 +101,7 @@ define(
                                     $fileButton.html('Change File');
                                     data.headers = {
                                         'X-FileName': data.files[0].name,
-                                        'Fileuuid': response.data[0].uuid
+                                        'X-Fileuuid': response.data[0].uuid
                                     };
                                     data.submit();
                                 }
