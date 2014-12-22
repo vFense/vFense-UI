@@ -28,7 +28,7 @@ define(
 
                     this.template = myTemplate;
                     this.file = {
-                        id: '',
+                        uuid: '',
                         name: '',
                         size: ''
                     };
@@ -114,7 +114,7 @@ define(
                             $fileTable.append(
                                 crel('tr',
                                     crel('td', 'Hash:'),
-                                    crel('td', {style: 'word-wrap: break-word;'}, data.result.data[0].md5)
+                                    crel('td', {style: 'word-wrap: break-word;'}, data.result.data[0].file_uuid)
                                 ),
                                 crel('tr',
                                     crel('td', 'Path:'),
@@ -133,17 +133,17 @@ define(
                     $labels.show();
                 },
                 confirm: function () {
-                    var url = '/api/v1/apps/custom/upload/data',
+                    var url = '/api/v1/apps/upload/finalize',
                         $form = this.$('form'),
                         $inputs = $form.find('input[type=text], select'),
                         $message = $form.find('span.help-online'),
                         invalid = false,
                         that = this,
                         params = {
-                            id: this.file.uuid,
-                            name: this.file.name,
-                            size: this.file.size,
-                            'md5_hash': this.file.md5
+                            uuid: this.file.file_uuid,
+                            name: this.file.file_name,
+                            size: this.file.file_size,
+                            'md5_hash': this.file.file_hash
                         };
                     $inputs.each(function () {
                         if ((!this.value || this.value === '0') && this.name !== 'cli_options') {
@@ -154,7 +154,7 @@ define(
                             params[this.name] = this.value;
                         }
                     });
-                    if (!params.id) {
+                    if (!params.uuid) {
                         invalid = true;
                         $form.find('.table').css('color', '#b94a48');
                     }
