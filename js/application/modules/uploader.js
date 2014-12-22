@@ -133,7 +133,7 @@ define(
                     $labels.show();
                 },
                 confirm: function () {
-                    var url = '/api/v1/apps/upload/finalize',
+                    var url = '/api/v1/apps/finalize/upload',
                         $form = this.$('form'),
                         $inputs = $form.find('input[type=text], select'),
                         $message = $form.find('span.help-online'),
